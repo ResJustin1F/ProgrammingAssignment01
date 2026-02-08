@@ -39,20 +39,20 @@ public abstract class Ticket {
     // -------------------------------
 
     public int estimateResolutionHours() {
-        // TODO #1a - done
+        // TODO #1a
         int base = (6 - priority) * 2 + daysOpen;
         return max(base, 1);
     }
 
     public int estimateResolutionHours(int complexityFactor) {
-        // TODO #1b - done
+        // TODO #1b
         int base = (6 - priority) * 2 + daysOpen;
         base *= complexityFactor;
         return max(base, 1);
     }
 
     public int estimateResolutionHours(int complexityFactor, int afterHoursPenalty) {
-        // TODO #1c - done
+        // TODO #1c
         int base = (6 - priority) * 2 + daysOpen;
         base *= complexityFactor;
         base += afterHoursPenalty;
