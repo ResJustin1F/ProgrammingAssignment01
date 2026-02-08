@@ -1,17 +1,21 @@
 package org.example;
+
+import static java.lang.Math.max;
+
 public abstract class Ticket {
     private final int id;
     private final String requester;
     private final int priority; // 1 (low) .. 5 (high)
     private final int daysOpen;
 
+    //constructor ln 9
     public Ticket(int id, String requester, int priority, int daysOpen) {
-        if (priority < 1 || priority > 5) throw new IllegalArgumentException("priority must be 1..5");
+        if (priority < 1 || priority > 5) throw new IllegalArgumentException("priority must be 1..5"); //checks if outside
         if (daysOpen < 0) throw new IllegalArgumentException("daysOpen must be >= 0");
         this.id = id;
         this.requester = requester;
         this.priority = priority;
-        this.daysOpen = daysOpen;
+        this.daysOpen = daysOpen; //stores the value "daysOpen" into the 'box' this.daysOpen holds the data
     }
 
     public int getId() { return id; }
@@ -19,9 +23,10 @@ public abstract class Ticket {
     public int getPriority() { return priority; }
     public int getDaysOpen() { return daysOpen; }
 
+    //each getter returns the current value stored int hat field when it is called - aka fetch data
+
     /** Higher means more urgent */
     public abstract int urgencyScore();
-
     // -------------------------------
     // TODO #1 (Method Overloading)
     // Implement ALL three overloads.
@@ -35,17 +40,23 @@ public abstract class Ticket {
 
     public int estimateResolutionHours() {
         // TODO #1a
-        return -1;
+        int base = (6 - priority) * 2 + daysOpen;
+        return max(base, 1);
     }
 
     public int estimateResolutionHours(int complexityFactor) {
         // TODO #1b
-        return -1;
+        int base = (6 - priority) * 2 + daysOpen;
+        base *= complexityFactor;
+        return max(base, 1);
     }
 
     public int estimateResolutionHours(int complexityFactor, int afterHoursPenalty) {
         // TODO #1c
-        return -1;
+        int base = (6 - priority) * 2 + daysOpen;
+        base *= complexityFactor;
+        base += afterHoursPenalty;
+        return max(1, base);
     }
 
     @Override
