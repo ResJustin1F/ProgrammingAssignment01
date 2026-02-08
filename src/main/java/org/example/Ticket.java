@@ -39,7 +39,7 @@ public abstract class Ticket {
     // -------------------------------
 
     public int estimateResolutionHours() {
-        // TODO #1a. - done
+        // TODO #1a
         int base = (6 - priority) * 2 + daysOpen;
         return max(base, 1);
     }
